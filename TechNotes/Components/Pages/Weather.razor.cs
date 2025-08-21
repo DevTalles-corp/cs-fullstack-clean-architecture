@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Components;
 
 namespace TechNotes.Components.Pages;
