@@ -1,5 +1,4 @@
 using TechNotes.Application;
-using TechNotes.Application.Notes;
 using TechNotes.Components;
 
 var builder = WebApplication.CreateBuilder(args);
