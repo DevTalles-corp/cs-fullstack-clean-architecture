@@ -2,6 +2,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechNotes.Domain.Notes;
+using TechNotes.Infrastructure.Repositories;
 
 namespace TechNotes.Infrastructure;
 
@@ -15,6 +17,7 @@ public static class DepencyInjection
         b => b.MigrationsAssembly("TechNotes.Infrastructure")
       )
     );
+    services.AddScoped<INoteRepository, NoteRepository>();
     return services;
   }
 }
