@@ -15,13 +15,7 @@ public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, NoteR
   }
   public async Task<NoteResponse> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
   {
-    var newNote = new Note
-    {
-      Title = request.Title,
-      Content = request.Content,
-      PublishedAt = request.PublishedAt,
-      IsPublished = request.IsPublished
-    };
+    var newNote = request.Adapt<Note>();
     var note = await _noteRepository.CreateNoteAsync(newNote);
     return note.Adapt<NoteResponse>();
   }
