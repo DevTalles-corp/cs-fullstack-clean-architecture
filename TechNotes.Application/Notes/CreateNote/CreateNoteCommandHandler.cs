@@ -4,7 +4,7 @@ using TechNotes.Domain.Notes;
 
 namespace TechNotes.Application.Notes.CreateNote;
 
-public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Note>
+public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, NoteResponse>
 {
   private readonly INoteRepository _noteRepository;
 
@@ -12,7 +12,7 @@ public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Note>
   {
     _noteRepository = noteRepository;
   }
-  public Task<Note> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
+  public Task<NoteResponse> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
   {
     var newNote = new Note
     {
