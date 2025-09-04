@@ -1,4 +1,5 @@
 using System;
+using Mapster;
 using MediatR;
 using TechNotes.Domain.Notes;
 
@@ -12,7 +13,7 @@ public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, NoteR
   {
     _noteRepository = noteRepository;
   }
-  public Task<NoteResponse> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
+  public async Task<NoteResponse> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
   {
     var newNote = new Note
     {
@@ -21,6 +22,7 @@ public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, NoteR
       PublishedAt = request.PublishedAt,
       IsPublished = request.IsPublished
     };
-    return _noteRepository.CreateNoteAsync(newNote);
+    var note = await _noteRepository.CreateNoteAsync(newNote);
+    return note.Adapt<NoteResponse>();
   }
 }

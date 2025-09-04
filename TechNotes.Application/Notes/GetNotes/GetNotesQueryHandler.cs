@@ -1,4 +1,5 @@
 using System;
+using Mapster;
 using MediatR;
 using TechNotes.Domain.Notes;
 
@@ -14,6 +15,7 @@ public class GetNotesQueryHandler : IRequestHandler<GetNotesQuery, List<NoteResp
   }
   public async Task<List<NoteResponse>> Handle(GetNotesQuery request, CancellationToken cancellationToken)
   {
-    return await _noteRepository.GetAllNotesAsync();
+    var notes = await _noteRepository.GetAllNotesAsync();
+    return notes.Adapt<List<NoteResponse>>();
   }
 }
