@@ -1,5 +1,7 @@
 ﻿@page "/note-editor"
 @page "/note-editor/{NoteId:int}"
+@using TechNotes.Application.Notes.GetNoteById
+@using TechNotes.Application.Notes.UpdateNote
 @inject ISender Sender
 
 @if (isEditMode && Note is not null)
@@ -23,7 +25,7 @@ else
         <InputDate @bind-Value="Note.PublishedAt" class="form-control mb-2" />
         <label class="form-check-label mb-2">Publicado:</label>
         <InputCheckbox @bind-Value="Note.IsPublished" class="form-check-input mb-2" />
-        <button type="submit" class="btn btn-primary mt-3 w-100">Crear</button>
+        <button type="submit" class="btn btn-primary mt-3 w-100">@(isEditMode ? "Editar" : "Crear")</button>
     </EditForm>
 }
 
@@ -31,14 +33,44 @@ else
 @code {
     private bool isEditMode => NoteId != null;
     [SupplyParameterFromForm]
-    private NoteModel? Note { get; set; } = new NoteModel();
+    private NoteModel? Note { get; set; }
     [Parameter]
     public int? NoteId { get; set; }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (NoteId is not null)
+        {
+            var result = await Sender.Send(new GetNoteByIdQuery { Id = (int)NoteId });
+            if (result is not null)
+            {
+                Note ??= result.Adapt<NoteModel>();
+                Note.Id = (int)NoteId;
+            }
+        }
+        else
+        {
+            Note ??= new();
+        }
+    }
     private async Task HandleSubmit()
     {
-        var command = Note.Adapt<CreateNoteCommand>();
-        var result = await Sender.Send(command);
-        Note = result.Adapt<NoteModel>();
-        Console.WriteLine("Nota creada satistactoriamente");
+        if (isEditMode)
+        {
+            var command = Note.Adapt<UpdateNoteCommand>();
+            var result = await Sender.Send(command);
+            if (result is not null)
+            {
+                Note = result.Adapt<NoteModel>();
+            }
+            Console.WriteLine("Nota actualizada satistactoriamente");
+        }
+        else
+        {
+            var command = Note.Adapt<CreateNoteCommand>();
+            var result = await Sender.Send(command);
+            Note = result.Adapt<NoteModel>();
+            Console.WriteLine("Nota creada satistactoriamente");
+        }
+
     }
 }
