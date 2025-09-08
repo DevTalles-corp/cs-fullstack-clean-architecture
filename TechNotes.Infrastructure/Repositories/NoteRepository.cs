@@ -23,4 +23,9 @@ public class NoteRepository : INoteRepository
     await _context.SaveChangesAsync();
     return note;
   }
+
+  public async Task<Note?> GetNoteByIdAsync(int id)
+  {
+    return await _context.Notes.FindAsync(id);
+  }
 }
