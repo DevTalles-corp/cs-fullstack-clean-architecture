@@ -14,11 +14,13 @@ public class Result
     ErrorMessage = errorMessage;
   }
 
-  public static Result Success() => new(true);
-  public static Result Failure(string errorMessage) => new(false, errorMessage);
+  public static Result Ok() => new(true);
+  public static Result Fail(string errorMessage) => new(false, errorMessage);
 
-  public static Result<T> Ok<T>(T? value) => new(value, true, null);
+  public static Result<T> Ok<T>(T? value) => new(value, true, string.Empty);
   public static Result<T> Fail<T>(string errorMessage) => new(default, false, errorMessage);
+
+  public static Result<T> FromValue<T>(T? value) => value != null ? Ok(value) : Fail<T>("El valor no puede ser nulo");
 }
 public class Result<T> : Result
 {
@@ -27,4 +29,6 @@ public class Result<T> : Result
   {
     Value = value;
   }
+  public static implicit operator Result<T>(T? value) => FromValue(value);
+  public static implicit operator T?(Result<T> result) => result.Value;
 }
