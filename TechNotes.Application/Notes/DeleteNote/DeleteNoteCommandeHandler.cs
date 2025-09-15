@@ -12,7 +12,7 @@ public class DeleteNoteCommandeHandler : ICommandHandler<DeleteNoteCommand>
     var deleted = await _noteRepository.DeleteNoteAsync(request.Id);
     if (deleted)
     {
-      Result.Ok();
+      return Result.Ok();
     }
     return Result.Fail("Nota no encontrada o no se pudo eliminar la nota");
   }
