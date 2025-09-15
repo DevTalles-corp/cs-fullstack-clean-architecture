@@ -1,10 +1,3 @@
-using System;
-using Mapster;
-using MediatR;
-using TechNotes.Application.Abstractions.RequestHandling;
-using TechNotes.Domain.Abtractions;
-using TechNotes.Domain.Notes;
-
 namespace TechNotes.Application.Notes.GetNotes;
 
 public class GetNotesQueryHandler : IQueryHandler<GetNotesQuery, List<NoteResponse>>

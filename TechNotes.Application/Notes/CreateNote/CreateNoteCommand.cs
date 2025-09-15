@@ -1,8 +1,3 @@
-using System;
-using MediatR;
-using TechNotes.Application.Abstractions.RequestHandling;
-using TechNotes.Domain.Notes;
-
 namespace TechNotes.Application.Notes.CreateNote;
 
 public class CreateNoteCommand : ICommand<NoteResponse>

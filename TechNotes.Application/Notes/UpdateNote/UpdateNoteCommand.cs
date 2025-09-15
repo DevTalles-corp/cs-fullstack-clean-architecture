@@ -1,7 +1,3 @@
-using System;
-using MediatR;
-using TechNotes.Application.Abstractions.RequestHandling;
-
 namespace TechNotes.Application.Notes.UpdateNote;
 
 public class UpdateNoteCommand : ICommand<NoteResponse?>

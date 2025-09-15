@@ -1,10 +1,3 @@
-using System;
-using Mapster;
-using MediatR;
-using TechNotes.Application.Abstractions.RequestHandling;
-using TechNotes.Domain.Abtractions;
-using TechNotes.Domain.Notes;
-
 namespace TechNotes.Application.Notes.CreateNote;
 
 public class CreateNoteCommandHandler : ICommandHandler<CreateNoteCommand, NoteResponse>
