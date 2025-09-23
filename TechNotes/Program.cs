@@ -1,7 +1,5 @@
 using TechNotes;
 using TechNotes.Application;
-using TechNotes.Application.Notes;
-using TechNotes.Components;
 using TechNotes.Features.Notes.Services;
 using TechNotes.Infrastructure;
 
