@@ -1,6 +1,7 @@
 ﻿@page "/note-editor"
 @page "/note-editor/{NoteId:int}"
 
+@attribute [Authorize]
 @inject ISender Sender
 @inject NavigationManager NavigationManager;
 

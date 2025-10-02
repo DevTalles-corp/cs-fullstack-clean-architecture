@@ -65,7 +65,7 @@ else
                     <!-- Cabecera de la nota -->
                     <div class="p-3 flex-1 flex flex-col">
                         <div class="flex items-start justify-between mb-3">
-                            <Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+                            <AuthorizeView>
                                 <Authorized>
                                     <a href="/note-editor/@note.Id"
                                         class="text-3xl font-semibold text-gray-800 leading-tight line-clamp-2 flex-1 pr-2">
@@ -77,7 +77,7 @@ else
                                         @note.Title
                                     </p>
                                 </NotAuthorized>
-                            </Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+                            </AuthorizeView>
                             @if (note.IsPublished)
                             {
                                 <div class="flex-shrink-0">
