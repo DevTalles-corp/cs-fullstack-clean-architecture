@@ -1,7 +1,7 @@
 ﻿@page "/note-editor"
 @page "/note-editor/{NoteId:int}"
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Writer")]
 @inject ISender Sender
 @inject NavigationManager NavigationManager;
 @inject UserManager<User> UserManager;
