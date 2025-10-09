@@ -1,5 +1,3 @@
-using System;
-
 namespace TechNotes.Components.Pages;
 
 public class NoteModel
