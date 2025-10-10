@@ -30,6 +30,7 @@ public static class DepencyInjection
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<IUserService, UserService>();
     AddAuthentication(services);
+    services.AddHttpContextAccessor();
     return services;
   }
   private static void AddAuthentication(IServiceCollection services)
