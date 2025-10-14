@@ -1,6 +1,5 @@
 using TechNotes.Application.Users;
 using TechNotes.Domain.User;
-
 namespace TechNotes.Application.Notes.GetNoteById;
 
 public class GetNoteByIdQueryHandler : IQueryHandler<GetNoteByIdQuery, NoteResponse?>

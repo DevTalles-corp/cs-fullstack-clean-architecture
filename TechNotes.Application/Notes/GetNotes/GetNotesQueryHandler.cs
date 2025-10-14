@@ -8,7 +8,6 @@ public class GetNotesQueryHandler : IQueryHandler<GetNotesQuery, List<NoteRespon
   private readonly INoteRepository _noteRepository;
   private readonly IUserRepository _userRepository;
   private readonly IUserService _userService;
-
   public GetNotesQueryHandler(INoteRepository noteRepository, IUserRepository userRepository, IUserService userService)
   {
     _noteRepository = noteRepository;

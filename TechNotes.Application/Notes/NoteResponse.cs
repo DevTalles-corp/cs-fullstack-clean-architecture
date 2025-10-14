@@ -1,5 +1,3 @@
-using System;
-
 namespace TechNotes.Application.Notes;
 
 public record struct NoteResponse(
