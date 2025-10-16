@@ -1,17 +1,31 @@
 ﻿@page "/user-overview"
+@using Microsoft.AspNetCore.Components.QuickGrid
 @using TechNotes.Application.Users
 @using TechNotes.Application.Users.GetUsers
 @inject ISender Sender;
 @rendermode @(new InteractiveServerRenderMode())
 @attribute [Authorize(Roles = "Admin")]
+<PageTitle>Usuarios</PageTitle>
 
-<h1 class="text-3xl font-bold text-blue-900 tracking-tight">UserOverview</h1>
-<ul>
-    @foreach (var user in users)
-    {
-        <li>@user.UserName - @user.Email</li>
-    }
-</ul>
+<h1 class="text-3xl font-bold text-blue-900 tracking-tight">Usuarios</h1>
+@if (users is null)
+{
+    <p class="text-center">Cagando usuarios..</p>
+}
+else if (users.Count == 0)
+{
+    <p class="text-center">No hay usuarios para mostrar</p>
+}
+else
+{
+    <div class="border-2 border-gray-300 rounded-lg shadow-md">
+        <QuickGrid Items="users.AsQueryable()" class="w-full table-auto bg-white">
+            <PropertyColumn Property="@(u => u.UserName)" Sortable="true" class="border-2" Title="Nombre de usuario" />
+            <PropertyColumn Property="@(u => u.Email)" Sortable="true" class="border-2" Title="Correo electrónico" />
+        </QuickGrid>
+    </div>
+}
+
 
 @code {
     private List<UserResponse> users = new();
