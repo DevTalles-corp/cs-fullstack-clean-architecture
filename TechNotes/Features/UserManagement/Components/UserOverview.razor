@@ -42,7 +42,7 @@ else
         </QuickGrid>
     </div>
 }
-
+<UserRolesModal ShowModal="@showModal" ModalClosed="CloseModal" UserId="@selectedUserId" UserName="@selectedUserName" />
 
 @code {
     private List<UserResponse> users = new();
