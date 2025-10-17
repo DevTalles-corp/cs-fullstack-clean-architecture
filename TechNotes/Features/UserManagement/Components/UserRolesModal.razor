@@ -1,4 +1,6 @@
-﻿@if (ShowModal)
+﻿@using TechNotes.Application.Users.GetUserRoles
+@inject ISender Sender
+@if (ShowModal)
 {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
         <div class="relative w-full max-w-lg sm:max-w-xl bg-white rounded-xl shadow-xl p-4 sm:p-5">
@@ -77,11 +79,12 @@
 
             <!-- Bóton para cerrar -->
             <div class="mt-4 flex justify-end">
-                <button @onclick="CloseModal" class="px-5 py-2.5 text-sm font-medium text-white
-                                                                                 bg-gradient-to-br from-red-500 to-red-600
-                                                                                 hover:from-red-600 hover:to-red-700
-                                                                                 focus:outline-none focus:ring-2 focus:ring-red-500
-                                                                                 transition-colors !rounded-md">
+                <button @onclick="CloseModal"
+                    class="px-5 py-2.5 text-sm font-medium text-white
+                                                                                                 bg-gradient-to-br from-red-500 to-red-600
+                                                                                                 hover:from-red-600 hover:to-red-700
+                                                                                                 focus:outline-none focus:ring-2 focus:ring-red-500
+                                                                                                 transition-colors !rounded-md">
                     Cerrar
                 </button>
             </div>
@@ -105,10 +108,10 @@
     protected override async Task OnParametersSetAsync()
     {
         Console.WriteLine("Mostrando el modal");
-        Console.WriteLine($"{UserName} {UserId}");
+        Console.WriteLine($"{UserName} - {UserId}");
         if (ShowModal && UserId is not null)
         {
-            Roles = new List<string> { "test role 1", "test role 2" };
+            await LoadUserRoles();
         }
     }
     private async Task AddRole()
@@ -130,4 +133,19 @@
         ModalClosed.InvokeAsync(ShowModal);
     }
 
+    private async Task LoadUserRoles()
+    {
+        if (ShowModal && UserId is not null)
+        {
+            var result = await Sender.Send(new GetUserRolesQuery { UserId = UserId });
+            if (result.IsSuccessful && result.Value is not null)
+            {
+                Roles = result.Value;
+            }
+            else
+            {
+                Roles = [];
+            }
+        }
+    }
 }
