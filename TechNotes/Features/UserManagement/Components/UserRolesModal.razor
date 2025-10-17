@@ -1,4 +1,5 @@
-﻿@using TechNotes.Application.Users.GetUserRoles
+﻿@using TechNotes.Application.Users.AddRoleToUser
+@using TechNotes.Application.Users.GetUserRoles
 @inject ISender Sender
 @if (ShowModal)
 {
@@ -81,10 +82,10 @@
             <div class="mt-4 flex justify-end">
                 <button @onclick="CloseModal"
                     class="px-5 py-2.5 text-sm font-medium text-white
-                                                                                                 bg-gradient-to-br from-red-500 to-red-600
-                                                                                                 hover:from-red-600 hover:to-red-700
-                                                                                                 focus:outline-none focus:ring-2 focus:ring-red-500
-                                                                                                 transition-colors !rounded-md">
+                                                                                                             bg-gradient-to-br from-red-500 to-red-600
+                                                                                                             hover:from-red-600 hover:to-red-700
+                                                                                                             focus:outline-none focus:ring-2 focus:ring-red-500
+                                                                                                             transition-colors !rounded-md">
                     Cerrar
                 </button>
             </div>
@@ -118,7 +119,12 @@
     {
         if (!string.IsNullOrWhiteSpace(newRole))
         {
-            Roles.Add(newRole);
+            await Sender.Send(new AddRoleToUserCommand
+            {
+                UserId = UserId,
+                RoleName = newRole
+            });
+            await LoadUserRoles();
             newRole = string.Empty;
         }
     }

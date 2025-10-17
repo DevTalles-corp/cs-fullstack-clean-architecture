@@ -13,12 +13,39 @@ public class UserService : IUserService
   private readonly IHttpContextAccessor _httpContextAccessor;
   private readonly INoteRepository _noteRepository;
 
-  public UserService(UserManager<User> userManager, IHttpContextAccessor httpContextAccessor, INoteRepository noteRepository)
+  private readonly RoleManager<IdentityRole> _roleManager;
+
+  public UserService(UserManager<User> userManager, IHttpContextAccessor httpContextAccessor,
+                     INoteRepository noteRepository, RoleManager<IdentityRole> roleManager)
   {
     _userManager = userManager;
     _httpContextAccessor = httpContextAccessor;
     _noteRepository = noteRepository;
+    _roleManager = roleManager;
   }
+
+  public async Task AddUserRoleAsync(string userId, string roleName)
+  {
+    var user = await _userManager.FindByIdAsync(userId);
+    if (user is null)
+    {
+      return;
+    }
+    if (!await _roleManager.RoleExistsAsync(roleName))
+    {
+      var roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+      if (!roleResult.Succeeded)
+      {
+        throw new Exception("Error al crear el rol");
+      }
+    }
+    var result = await _userManager.AddToRoleAsync(user, roleName);
+    if (!result.Succeeded)
+    {
+      throw new Exception("Error al agregar el rol al usuario");
+    }
+  }
+
   public async Task<bool> CurrentUserCanCreateNoteAsync()
   {
     var user = await GetCurrentUserAsync();

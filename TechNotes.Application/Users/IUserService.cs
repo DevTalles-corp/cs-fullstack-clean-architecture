@@ -10,4 +10,6 @@ public interface IUserService
   Task<bool> CurrentUserCanEditNoteAsync(int noteId);
   Task<List<string>> GetUserRolesAsync(string userId);
 
+  Task AddUserRoleAsync(string userId, string roleName);
+
 }
