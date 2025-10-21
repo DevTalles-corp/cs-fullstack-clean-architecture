@@ -12,5 +12,4 @@ public interface IUserService
 
   Task AddUserRoleAsync(string userId, string roleName);
   Task RemoveRoleFromUserAsync(string userId, string roleName);
-
 }

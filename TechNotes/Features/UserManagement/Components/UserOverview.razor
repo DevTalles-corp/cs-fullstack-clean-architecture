@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using TechNotes.Application.Users
 @using TechNotes.Application.Users.GetUsers
+
 @inject ISender Sender;
 @rendermode @(new InteractiveServerRenderMode())
 @attribute [Authorize(Roles = "Admin")]

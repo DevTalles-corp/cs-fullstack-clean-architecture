@@ -1,5 +1,3 @@
-using System;
-
 namespace TechNotes.Application.Users.RemoveRoleFromUser;
 
 public class RemoveRoleFromUserCommand : ICommand

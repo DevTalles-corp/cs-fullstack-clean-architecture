@@ -1,5 +1,3 @@
-using System;
-
 namespace TechNotes.Application.Users.AddRoleToUser;
 
 public class AddRoleToUserCommandHandler : ICommandHandler<AddRoleToUserCommand>
