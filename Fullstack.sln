@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNotes.Application", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNotes.Infrastructure", "TechNotes.Infrastructure\TechNotes.Infrastructure.csproj", "{60E95BD2-A3BA-44AD-BAE3-217EA7026444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNotes.Client", "TechNotes.Client\TechNotes.Client.csproj", "{BF05AA0E-ED89-403D-A996-5C1E17359072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{60E95BD2-A3BA-44AD-BAE3-217EA7026444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E95BD2-A3BA-44AD-BAE3-217EA7026444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E95BD2-A3BA-44AD-BAE3-217EA7026444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF05AA0E-ED89-403D-A996-5C1E17359072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF05AA0E-ED89-403D-A996-5C1E17359072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF05AA0E-ED89-403D-A996-5C1E17359072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF05AA0E-ED89-403D-A996-5C1E17359072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
