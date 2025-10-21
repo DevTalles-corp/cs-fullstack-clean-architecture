@@ -1,6 +1,4 @@
-﻿@using TechNotes.Application.Users.AddRoleToUser
-@using TechNotes.Application.Users.GetUserRoles
-@inject ISender Sender
+﻿@inject ISender Sender
 @if (ShowModal)
 {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
@@ -82,10 +80,10 @@
             <div class="mt-4 flex justify-end">
                 <button @onclick="CloseModal"
                     class="px-5 py-2.5 text-sm font-medium text-white
-                                                                                                             bg-gradient-to-br from-red-500 to-red-600
-                                                                                                             hover:from-red-600 hover:to-red-700
-                                                                                                             focus:outline-none focus:ring-2 focus:ring-red-500
-                                                                                                             transition-colors !rounded-md">
+                                                                                                                         bg-gradient-to-br from-red-500 to-red-600
+                                                                                                                         hover:from-red-600 hover:to-red-700
+                                                                                                                         focus:outline-none focus:ring-2 focus:ring-red-500
+                                                                                                                         transition-colors !rounded-md">
                     Cerrar
                 </button>
             </div>
@@ -130,7 +128,12 @@
     }
     private async Task RemoveRole(string role)
     {
-        Roles.Remove(role);
+        await Sender.Send(new RemoveRoleFromUserCommand
+        {
+            UserId = UserId,
+            RoleName = role
+        });
+        await LoadUserRoles();
     }
     private void CloseModal()
     {

@@ -104,6 +104,24 @@ public class UserService : IUserService
     return isUserInRole;
   }
 
+  public async Task RemoveRoleFromUserAsync(string userId, string roleName)
+  {
+    var user = await _userManager.FindByIdAsync(userId);
+    if (user is null)
+    {
+      throw new Exception("Usuario no encontrado");
+    }
+    if (!await _roleManager.RoleExistsAsync(roleName))
+    {
+      throw new Exception("Rol no encontrado");
+    }
+    var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+    if (!result.Succeeded)
+    {
+      throw new Exception("Error al eliminar el rol del usuario");
+    }
+  }
+
   private async Task<User?> GetCurrentUserAsync()
   {
     var httpContext = _httpContextAccessor.HttpContext;

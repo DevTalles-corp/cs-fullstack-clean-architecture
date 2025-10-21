@@ -11,5 +11,6 @@ public interface IUserService
   Task<List<string>> GetUserRolesAsync(string userId);
 
   Task AddUserRoleAsync(string userId, string roleName);
+  Task RemoveRoleFromUserAsync(string userId, string roleName);
 
 }
