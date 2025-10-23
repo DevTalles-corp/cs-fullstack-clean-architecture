@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using TechNotes.Application.Notes;
-using TechNotes.Client;
 using TechNotes.Client.Features.Notes;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

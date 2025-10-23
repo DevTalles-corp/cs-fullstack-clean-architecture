@@ -1,4 +1,3 @@
-using System;
 using System.Net.Http.Json;
 using TechNotes.Application.Notes;
 

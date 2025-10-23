@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechNotes.Application.Notes;
 using TechNotes.Application.Notes.GetNotesByCurrentUser;

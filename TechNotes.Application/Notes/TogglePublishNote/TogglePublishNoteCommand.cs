@@ -1,5 +1,3 @@
-using System;
-
 namespace TechNotes.Application.Notes.TogglePublishNote;
 
 public class TogglePublishNoteCommand : ICommand<NoteResponse>

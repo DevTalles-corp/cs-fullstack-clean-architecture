@@ -1,4 +1,3 @@
-using System;
 using TechNotes.Application.Users;
 
 namespace TechNotes.Application.Notes.TogglePublishNote;
