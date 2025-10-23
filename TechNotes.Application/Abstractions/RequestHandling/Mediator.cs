@@ -14,7 +14,7 @@ public static class Mediator
     var handlerTypes = assembly.GetTypes()
     .Where(t => !t.IsInterface && !t.IsAbstract)
     .SelectMany(t => t.GetInterfaces()
-    .Where(i => i.IsSignatureType && i.GetGenericTypeDefinition() == handlerInterfaceType)
+    .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == handlerInterfaceType)
     .Select(i => new { Interface = i, Implementation = t }));
     foreach (var handler in handlerTypes)
     {

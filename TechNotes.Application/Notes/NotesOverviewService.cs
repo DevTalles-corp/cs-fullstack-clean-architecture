@@ -1,5 +1,4 @@
 using System;
-using MediatR;
 using TechNotes.Application.Notes.GetNotesByCurrentUser;
 using TechNotes.Application.Notes.TogglePublishNote;
 

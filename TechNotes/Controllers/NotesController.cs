@@ -1,6 +1,6 @@
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TechNotes.Application.Abstractions.RequestHandling;
 using TechNotes.Application.Notes;
 using TechNotes.Application.Notes.GetNotesByCurrentUser;
 using TechNotes.Application.Notes.TogglePublishNote;
