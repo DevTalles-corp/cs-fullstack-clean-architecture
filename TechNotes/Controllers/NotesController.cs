@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechNotes.Application.Abstractions.RequestHandling;
 using TechNotes.Application.Notes;
